@@ -1,6 +1,6 @@
 import { verifyRegistrationResponse } from '@simplewebauthn/server';
 import { NextResponse } from 'next/server';
-import { activeChallenges } from './generate-options/route';
+import { activeChallenges } from '../generate-options/route';
 
 export async function POST(req: Request) {
   const body = await req.json();
