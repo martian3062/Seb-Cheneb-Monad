@@ -34,7 +34,7 @@ export default function Features() {
         <p className="text-white/50 text-xl max-w-2xl mx-auto">Bridging the gap between isolated edge devices and highly scalable L1 blockchains.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 w-full max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 w-full max-w-7xl mx-auto">
         {features.map((ft, idx) => (
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -154,8 +154,8 @@ export default function Dashboard() {
       </header>
 
       {/* Main Grid Floor */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        
         {/* Left Column - System States */}
         <div className="lg:col-span-1 space-y-6">
           <div className="glass-panel p-6 rounded-2xl border border-white/5 space-y-4">
@@ -177,7 +177,7 @@ export default function Dashboard() {
         </div>
 
         {/* Center & Right Column - Intent Engine */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-3 space-y-6">
           
           {/* Intent Input Area */}
           <div className="glass-panel p-6 rounded-2xl border border-white/5 shadow-2xl relative overflow-hidden">
@@ -335,7 +335,7 @@ export default function Dashboard() {
       </div>
 
       {/* ANALYTICS (Recharts — replaces Dune iframe) */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
 
         {/* Gas & TX Activity Chart */}
         <div className="glass-panel p-6 rounded-2xl border border-white/5 relative overflow-hidden">
