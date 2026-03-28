@@ -82,6 +82,7 @@ function PipelineStep({ label, status, delay }: { label: string, status: 'pendin
 export default function Dashboard() {
   const [orchestratorState, setOrchestratorState] = useState<OrchestratorState>('idle');
   const [intentInput, setIntentInput] = useState("deploy agent strategy on Monad Testnet");
+  const [paymasterAddress, setPaymasterAddress] = useState("0x0000000000000000000000000000000000000000");
 
   // Vercel AI SDK useCompletion
   const { completion, complete, isLoading: isCompletionLoading } = useCompletion({
@@ -121,7 +122,7 @@ export default function Dashboard() {
       setOrchestratorState('approving');
       // Prompt MetaMask for a 0 MON M2M transaction representing Superfluid stream
       await sendTransactionAsync({
-        to: '0x0000000000000000000000000000000000000000',
+        to: (paymasterAddress as `0x${string}`) || '0x0000000000000000000000000000000000000000',
         value: 0n,
       });
     },
@@ -193,6 +194,18 @@ export default function Dashboard() {
                    <p className="text-red-200/80 mt-2 max-w-md">
                      Monad Testnet session locked. Agent requires M2M micro-payment approval before deploying on testnet.
                    </p>
+                   
+                   <div className="mt-6 w-full max-w-sm space-y-2">
+                     <label className="text-[10px] text-red-400/80 font-bold uppercase tracking-widest text-left block ml-1">Paymaster Recipient Address</label>
+                     <input 
+                       type="text" 
+                       value={paymasterAddress}
+                       onChange={(e) => setPaymasterAddress(e.target.value)}
+                       placeholder="0x..."
+                       className="w-full bg-black/40 border border-red-500/30 rounded-lg px-4 py-2 text-xs text-red-200 font-mono focus:outline-none focus:border-red-500"
+                     />
+                   </div>
+
                    <button 
                      onClick={handleApprovePayment}
                      className="mt-6 px-8 py-3 bg-red-600 hover:bg-red-500 text-white font-bold rounded-xl transition-colors shadow-[0_0_20px_rgba(220,38,38,0.4)]"
