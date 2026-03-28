@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: hsl(240, 10%, 3.9%);
+  --color-foreground: hsl(0, 0%, 98%);
+  
+  --color-card: hsl(240, 10%, 3.9%);
+  --color-card-foreground: hsl(0, 0%, 98%);
+  
+  --color-primary: hsl(260, 100%, 70%);
+  --color-primary-foreground: hsl(240, 5.9%, 10%);
+
+  --color-secondary: hsl(240, 3.7%, 15.9%);
+  --color-secondary-foreground: hsl(0, 0%, 98%);
+  
+  --color-border: hsl(240, 3.7%, 15.9%);
+  
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+}
+
+@layer base {
+  *, ::before, ::after {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.15), transparent 25%),
+      radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.15), transparent 25%);
+    background-attachment: fixed;
+    font-family: var(--font-inter), sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    background-color: rgb(255 255 255 / 0.05);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgb(255 255 255 / 0.1);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+  .glass-card {
+    background-color: rgb(255 255 255 / 0.05);
+    backdrop-filter: blur(12px);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgb(255 255 255 / 0.05);
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+  .glass-card:hover {
+    border-color: rgba(139, 92, 246, 0.4);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+    background-color: rgb(255 255 255 / 0.1);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.5);
+}

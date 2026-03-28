@@ -1,0 +1,27 @@
+[build]
+  base = "apps/web"
+  command = "pnpm install && pnpm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NEXT_PUBLIC_API_URL = "https://evolet-api.onrender.com"
+  NEXT_PUBLIC_GETBLOCK_RPC_URL = "https://go.getblock.io/68fdf72abc7347bbb9f7f66d88267ffa"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# SPA fallback for client-side routing
+[[redirects]]
+  from = "/api/proxy/*"
+  to = "https://evolet-api.onrender.com/api/v1/:splat"
+  status = 200
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"

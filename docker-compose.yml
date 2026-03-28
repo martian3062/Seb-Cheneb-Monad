@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  # Mock database for the API layer (Postgres)
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: builder
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: builder_base
+    ports:
+      - "5432:5432"
+
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://builder:password@db:5432/builder_base
+    depends_on:
+      - db
+    volumes:
+      - ./apps/api:/app

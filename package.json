@@ -1,0 +1,14 @@
+{
+  "name": "builder-base-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Semi-autonomous Web3 hub for Builder Base on Monad.",
+  "scripts": {
+    "dev": "pnpm -r --parallel dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint"
+  },
+  "devDependencies": {
+    "typescript": "^5.x"
+  }
+}
