@@ -108,13 +108,25 @@ export default function Dashboard() {
   const { sendTransactionAsync, data: txHash } = useSendTransaction();
   const { isSuccess: txSuccess } = useWaitForTransactionReceipt({ hash: txHash });
 
+  // Automatically proceed when transaction is confirmed
   useEffect(() => {
-    if (txSuccess) {
-      setOrchestratorState('executing');
-      // Trigger Vercel AI SDK stream upon blockchain confirmation
-      complete(intentInput, { body: { model_provider: "groq" } });
+    let timeout: NodeJS.Timeout;
+    if (txSuccess && orchestratorState === 'approving') {
+      // Small delay to allow React state to settle after transaction popup closes
+      timeout = setTimeout(() => {
+        setOrchestratorState('executing');
+        if (intentInput) {
+          try {
+            complete(intentInput, { body: { model_provider: "groq" } });
+          } catch (e) {
+            console.error("AI trigger failed", e);
+            setOrchestratorState('completed'); // Unblock if AI fails
+          }
+        }
+      }, 500);
     }
-  }, [txSuccess, complete, intentInput]);
+    return () => clearTimeout(timeout);
+  }, [txSuccess, orchestratorState, complete, intentInput]);
 
   // TanStack Query for Approval + Vercel Trigger
   const approveMutation = useMutation({
