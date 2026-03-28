@@ -11,6 +11,7 @@ export default function OfflineSyncManager() {
   const [packets, setPackets] = useState<{ id: string; size: string; status: "queued" | "sent" }[]>([]);
 
   const initiateSync = () => {
+    if (syncState !== "disconnected") return;
     setSyncState("scanning");
     setTimeout(() => {
       setSyncState("syncing");
@@ -27,6 +28,13 @@ export default function OfflineSyncManager() {
       
     }, 1500);
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      initiateSync();
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="glass-card p-6 min-h-[400px] flex flex-col relative w-full">
