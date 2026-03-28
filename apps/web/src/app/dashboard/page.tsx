@@ -82,7 +82,7 @@ function PipelineStep({ label, status, delay }: { label: string, status: 'pendin
 export default function Dashboard() {
   const [orchestratorState, setOrchestratorState] = useState<OrchestratorState>('idle');
   const [intentInput, setIntentInput] = useState("deploy agent strategy on Monad Testnet");
-  const [paymasterAddress, setPaymasterAddress] = useState("0x0000000000000000000000000000000000000000");
+  const [paymasterAddress, setPaymasterAddress] = useState("0xdead00000000000000000000000000000000dead");
 
   // Vercel AI SDK useCompletion
   const { completion, complete, isLoading: isCompletionLoading } = useCompletion({
