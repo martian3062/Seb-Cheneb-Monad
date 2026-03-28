@@ -10,7 +10,7 @@ export default function SmoothScroller({ children }: { children: React.ReactNode
 
   return (
     <ReactLenis root>
-      { children }
+      { children as any }
     </ReactLenis>
   )
 }
