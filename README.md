@@ -1,4 +1,4 @@
-# Evolet Node
+# Seb-Cheneb Node
 
 ### Intent-Centric, Agent-Executed, Payment-Gated, Privacy-Preserving Web3 Infrastructure — Secured via Restaking and Executed on Monad Testnet.
 
